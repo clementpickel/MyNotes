@@ -2,14 +2,14 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
+COPY . /usr/src/app
+
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
+RUN pip install -r requirements.txt
 
 ENV PORT=5000
 
 EXPOSE 5000
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "python", "run.py"]

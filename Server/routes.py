@@ -4,6 +4,10 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from models import User, Note
 
 def user_routes(app):
+    @app.route('/')
+    def basic():
+        return "<p>Hello world</p>"
+    
     @app.route('/register', methods=['POST'])
     def register():
         """
