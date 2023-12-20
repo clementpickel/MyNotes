@@ -28,12 +28,12 @@ To run the application using Docker, follow these steps:
 
 1. Build the Docker image:
     ```bash
-    docker build -t sekken/web:1.0 .
+    docker build -t sekken/mynotesweb:1.0 .
     ```
 
-2. Run the Docker container, mapping port 80 on your machine to port 80 in the container:
+2. Run the Docker container, mapping port 4200 on your machine to port 4200 in the container:
     ```bash
-    docker run -p 80:80 sekken/web:1.0
+    docker run -p 4200:4200 docker.io/sekken/mynotesweb:1.0
     ```
 
 ## Further help
