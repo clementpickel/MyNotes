@@ -1,21 +1,20 @@
-# Stage 1: Build the Angular app
-FROM node:latest as build
+# Use the node image as the base image
+FROM node:18.17.1
 
+# Set the working directory
 WORKDIR /app
 
+# Copy package.json and package-lock.json files
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
-RUN npm run build
+# Expose port 4200
+EXPOSE 4200
 
-# Stage 2: Serve the Angular app with Nginx
-FROM nginx:alpine
-
-COPY --from=build /app/dist/* /usr/share/nginx/html/
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Run npm start with host 0.0.0.0
+CMD ["npm", "start", "--", "--host", "0.0.0.0"]
