@@ -1,7 +1,7 @@
 <!-- src/app/login/login.component.html -->
 <div>
     <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <form (submit)="onSubmit()">
       <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
@@ -10,7 +10,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
       </div>
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+      <button type="submit">Login</button>
     </form>
-</div>
+  </div>
   
