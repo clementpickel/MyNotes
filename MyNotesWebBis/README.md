@@ -1,6 +1,6 @@
-# MyNotesWeb
+# MyNotesWebBis
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
 
 ## Development server
 
@@ -21,20 +21,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Docker
-
-To run the application using Docker, follow these steps:
-
-1. Build the Docker image:
-    ```bash
-    docker build -t sekken/mynotesweb:1.0 .
-    ```
-
-2. Run the Docker container, mapping port 4200 on your machine to port 4200 in the container:
-    ```bash
-    docker run -p 4200:4200 docker.io/sekken/mynotesweb:1.0
-    ```
 
 ## Further help
 

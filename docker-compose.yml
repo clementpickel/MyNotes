@@ -3,7 +3,7 @@ version: '3'
 services:
   mynotesweb:
     build:
-      context: ./MyNotesWeb
+      context: ./MyNotesWebBis
       dockerfile: Dockerfile  # Adjust this if your Dockerfile has a different name
     ports:
       - "4200:4200"
