@@ -2,6 +2,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service'; // Import the ApiService
 import { NgModel } from '@angular/forms';
+import { AuthService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ import { NgModel } from '@angular/forms';
 export class LoginComponent {
   user = { email: '', password: '' };
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     this.makeLoginCall(this.user.email, this.user.password);
@@ -20,11 +22,13 @@ export class LoginComponent {
 
   makeLoginCall(email: string, password: string) {
     this.apiService.login(email, password).subscribe(
-      (data) => {
-        console.log('Login successful:', data);
-        // Handle the response as needed (e.g., navigate to the home page)
+      (response: any) => {
+        console.log('User registered successfully', response);
+        const accessToken = response.access_token;
+        this.authService.saveAccessToken(accessToken);
+        this.router.navigate(['/']);
       },
-      (error) => {
+      (error: any) => {
         console.error('Login error:', error);
         // Handle the error (e.g., display an error message)
       }
