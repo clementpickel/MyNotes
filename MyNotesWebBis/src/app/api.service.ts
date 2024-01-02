@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ApiService {
-  private apiUrl = 'https://localhost:5000'; // Update with your API endpoint
+  private apiUrl = 'http://localhost:5000';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +17,6 @@ export class ApiService {
     const url = `${this.apiUrl}/login`;
     const body = { email, password };
     console.log(body)
-    // Set headers (if needed)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -24,9 +24,15 @@ export class ApiService {
     return this.http.post(url, body, { headers });
   }
 
-  registerUser(user: any): Observable<any> {
+  register(email: string, password: string, username: string): Observable<any> {
     const url = `${this.apiUrl}/register`;
-    return this.http.post(url, user);
+    const body = { email, password, username};
+    console.log(body)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(url, body, {headers});
   }
 
   // Add more methods for other types of requests (GET, PUT, DELETE, etc.)
