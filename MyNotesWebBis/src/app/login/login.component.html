@@ -1,16 +1,14 @@
 <!-- src/app/login/login.component.html -->
-<div>
-    <h2>Login</h2>
-    <form (submit)="onSubmit()">
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
-      </div>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  
+<form fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="user.email" name="email" type="email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="user.password" name="password" type="password" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+</form>

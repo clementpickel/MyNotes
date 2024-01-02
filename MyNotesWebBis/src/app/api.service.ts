@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   private apiUrl = 'http://localhost:5000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authservice: AuthService) {}
 
   // Example method for a POST request to login
   login(email: string, password: string): Observable<any> {
@@ -33,6 +34,20 @@ export class ApiService {
     });
 
     return this.http.post(url, body, {headers});
+  }
+
+  getNotes(): Observable<any> {
+    // Assuming you have a function to retrieve the JWT token
+    const authToken = this.authservice.getAccessToken();
+
+    // Include the JWT token in the headers
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    // Make the GET request to retrieve notes
+    return this.http.get<any>(`${this.apiUrl}/note`, { headers });
   }
 
   // Add more methods for other types of requests (GET, PUT, DELETE, etc.)

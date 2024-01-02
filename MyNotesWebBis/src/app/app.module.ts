@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    FlexLayoutModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

@@ -1,17 +1,18 @@
-<!-- register.component.html -->
-<div>
-    <h2>Register</h2>
-    <form (ngSubmit)="register()">
-      <label>Email:</label>
-      <input type="email" [(ngModel)]="user.email" name="email" required>
-  
-      <label>Password:</label>
-      <input type="password" [(ngModel)]="user.password" name="password" required>
-  
-      <label>Username:</label>
-      <input type="text" [(ngModel)]="user.username" name="username" required>
-  
-      <button type="submit">Register</button>
-    </form>
-  </div>
-  
+<form fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="user.email" name="email" type="email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="user.password" name="password" type="password" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="user.username" name="Username" type="name" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="register()">Register</button>
+</form>
