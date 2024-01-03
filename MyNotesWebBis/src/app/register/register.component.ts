@@ -22,7 +22,7 @@ export class RegisterComponent {
       (response: any) => {
         const accessToken = response.access_token;
         this.authService.saveAccessToken(accessToken);
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       (error: any) => {
         console.error('Error during registration', error);

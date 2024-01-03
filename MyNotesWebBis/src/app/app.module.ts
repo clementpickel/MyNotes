@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NewnoteComponent } from './newnote/newnote.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
     MainComponent,
     RegisterComponent,
+    NewnoteComponent,
   ],
   imports: [
     RouterModule,

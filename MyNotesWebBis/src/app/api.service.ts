@@ -37,18 +37,24 @@ export class ApiService {
   }
 
   getNotes(): Observable<any> {
-    // Assuming you have a function to retrieve the JWT token
     const authToken = this.authservice.getAccessToken();
 
-    // Include the JWT token in the headers
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`,
     });
 
-    // Make the GET request to retrieve notes
     return this.http.get<any>(`${this.apiUrl}/note`, { headers });
   }
 
-  // Add more methods for other types of requests (GET, PUT, DELETE, etc.)
+  createNote(note: any): Observable<any> {
+    const authToken = this.authservice.getAccessToken();
+    const url = `${this.apiUrl}/note`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    return this.http.post(url, note, { headers });
+  }
 }
