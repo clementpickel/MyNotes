@@ -48,4 +48,18 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
+  deleteNote(noteId: number): void {
+
+    this.apiService.deleteNote(noteId).subscribe(
+      (response) => {
+        console.log('Note deleted successfully:', response);
+        // Handle success, e.g., show a success message or update the UI
+      },
+      (error) => {
+        console.error('Error deleting note:', error);
+        // Handle error, e.g., show an error message to the user
+      }
+    );
+  }
 }

@@ -76,4 +76,22 @@ export class ApiService {
 
     return this.http.put<any>(url, requestBody, {headers});
   }
+
+  deleteNote(noteId: number): Observable<any> {
+    const url = `${this.apiUrl}/note`;
+
+    const authToken = this.authservice.getAccessToken();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+
+    const requestBody = {
+      note_id: noteId,
+    };
+
+    return this.http.delete<any>(url, { body: requestBody, headers: headers});
+  }
 }

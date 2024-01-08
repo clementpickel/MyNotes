@@ -1,6 +1,6 @@
 // edit-note.component.ts
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -13,9 +13,14 @@ export class EditNoteComponent {
   title: string = '';
   content: string = '';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      console.error('User not authenticated. Redirecting to login page.');
+      this.router.navigate(['/login']);
+    }
     const id = this.route.snapshot.params['id'];
 
     this.route.queryParams.subscribe((params) => {
