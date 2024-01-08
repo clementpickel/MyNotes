@@ -14,12 +14,25 @@ export class MainComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      console.error('User not authenticated. Redirecting to login page.');
-      this.router.navigate(['/login']);
-    }
+    // const accessToken = localStorage.getItem('access_token');
+    // if (!accessToken) {
+    //   console.error('User not authenticated. Redirecting to login page.');
+    //   this.router.navigate(['/login']);
+    // }
     this.getNotes();
+  }
+
+  goToNewNote(): void {
+    this.router.navigate(['/newnote']);
+  }
+
+  goToEditNote(id: number, title: string, content: string): void {
+    this.router.navigate(['/editnote', id], {
+      queryParams: {
+        title,
+        content,
+      },
+    });
   }
 
   getNotes(): void {
