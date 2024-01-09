@@ -41,5 +41,6 @@ export class EditNoteComponent {
         // Handle error, e.g., show an error message to the user
       }
     );
+    this.router.navigate(['/']);
   }
 }

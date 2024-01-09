@@ -23,10 +23,6 @@ export class MainComponent implements OnInit {
     this.getNotes();
   }
 
-  goToNewNote(): void {
-    this.router.navigate(['/newnote']);
-  }
-
   goToEditNote(id: number, title: string, content: string): void {
     this.router.navigate(['/editnote', id], {
       queryParams: {
@@ -84,5 +80,6 @@ export class MainComponent implements OnInit {
         // Handle error, e.g., show an error message to the user
       }
     );
+    this.getNotes()
   }
 }
