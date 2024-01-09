@@ -62,4 +62,41 @@ export class ApiService {
     const url = `${this.apiUrl}/user`;
     return this.http.delete(url);
   }
+  
+  updateNote(noteId: string, title: string, content: string): Observable<any> {
+    const url = `${this.apiUrl}/note`;
+    const authToken = this.authservice.getAccessToken();
+    const noteIdAsInt = parseInt(noteId, 10);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+    const requestBody = {
+      note_id: noteIdAsInt,
+      title: title,
+      content: content,
+    };
+
+    return this.http.put<any>(url, requestBody, {headers});
+  }
+
+  deleteNote(noteId: number): Observable<any> {
+    const url = `${this.apiUrl}/note`;
+
+    const authToken = this.authservice.getAccessToken();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
+
+    const requestBody = {
+      note_id: noteId,
+    };
+
+    return this.http.delete<any>(url, { body: requestBody, headers: headers});
+  }
 }

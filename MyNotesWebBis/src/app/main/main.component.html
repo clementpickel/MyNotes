@@ -1,10 +1,15 @@
 <div *ngFor="let note of notes">
     <h3>{{ note.title }}</h3>
     <p>{{ note.content }}</p>
-    
+    <button (click)="goToEditNote(note.id, note.title, note.content)">Edit Note</button>
+    <button (click)="deleteNote(note.id)">Delete Note</button>
 </div>
 <div>
     <button mat-raised-button color="warn" (click)="disconnect()">Disconnect</button>
     <button mat-raised-button color="warn" (click)="deleteUser()">Delete Account</button>
     <button mat-raised-button color="warn" (click)="redirectNewNote()">New Note</button>
+
+</div>
+<div>
+    <button (click)="goToNewNote()">Go to New Note</button>
 </div>

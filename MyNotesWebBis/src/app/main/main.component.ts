@@ -15,12 +15,25 @@ export class MainComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      console.error('User not authenticated. Redirecting to login page.');
-      this.router.navigate(['/login']);
-    }
+    // const accessToken = localStorage.getItem('access_token');
+    // if (!accessToken) {
+    //   console.error('User not authenticated. Redirecting to login page.');
+    //   this.router.navigate(['/login']);
+    // }
     this.getNotes();
+  }
+
+  goToNewNote(): void {
+    this.router.navigate(['/newnote']);
+  }
+
+  goToEditNote(id: number, title: string, content: string): void {
+    this.router.navigate(['/editnote', id], {
+      queryParams: {
+        title,
+        content,
+      },
+    });
   }
 
   getNotes(): void {
@@ -56,6 +69,19 @@ export class MainComponent implements OnInit {
       (error: any) => {
         console.error('Error deleting user', error);
         // Handle the error, e.g., show an error message to the user
+      }
+    );
+  }
+  deleteNote(noteId: number): void {
+
+    this.apiService.deleteNote(noteId).subscribe(
+      (response) => {
+        console.log('Note deleted successfully:', response);
+        // Handle success, e.g., show a success message or update the UI
+      },
+      (error) => {
+        console.error('Error deleting note:', error);
+        // Handle error, e.g., show an error message to the user
       }
     );
   }

@@ -1,0 +1,47 @@
+# Use an official Flutter runtime as a parent image
+
+FROM ubuntu:20.04
+
+# Set the working directory
+WORKDIR /app
+
+# Install necessary dependencies
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    unzip \
+    openjdk-11-jdk \
+    wget
+  
+ENV DEBIAN_FRONTEND teletype
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+# Download and install Android SDK
+RUN wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk.zip \
+    && unzip android-sdk.zip -d /usr/local/android-sdk \
+    && rm android-sdk.zip
+
+# Set environment variables
+ENV ANDROID_SDK_ROOT=/usr/local/android-sdk
+ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/tools/bin:${ANDROID_SDK_ROOT}/platform-tools"
+
+# Accept Android SDK licenses
+RUN yes | sdkmanager --licenses
+
+# Install Flutter
+RUN git clone https://github.com/flutter/flutter.git -b stable
+ENV PATH="/app/flutter/bin:${PATH}"
+
+# Run flutter doctor to finish the Flutter installation
+RUN flutter doctor
+
+# Copy the rest of your application code
+COPY . .
+
+# Install Flutter dependencies
+RUN flutter pub get
+
+# Build the Flutter app
+RUN flutter build apk

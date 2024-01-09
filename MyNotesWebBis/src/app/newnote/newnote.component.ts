@@ -17,7 +17,6 @@ export class NewnoteComponent {
   constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    // Check if the user has an access token
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       console.error('User not authenticated. Redirecting to login page.');

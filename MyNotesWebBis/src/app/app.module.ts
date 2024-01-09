@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewnoteComponent } from './newnote/newnote.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NewnoteComponent } from './newnote/newnote.component';
     MainComponent,
     RegisterComponent,
     NewnoteComponent,
+    EditNoteComponent,
   ],
   imports: [
     RouterModule,
