@@ -38,7 +38,6 @@ export class NewnoteComponent {
       return;
     }
 
-    // Call the API to create a new note
     this.apiService.createNote(this.note).subscribe(
       (response: any) => {
         console.log('Note created successfully', response);

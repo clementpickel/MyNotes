@@ -1,6 +1,10 @@
-<!-- your.component.html -->
-
 <div *ngFor="let note of notes">
     <h3>{{ note.title }}</h3>
     <p>{{ note.content }}</p>
+    
+</div>
+<div>
+    <button mat-raised-button color="warn" (click)="disconnect()">Disconnect</button>
+    <button mat-raised-button color="warn" (click)="deleteUser()">Delete Account</button>
+    <button mat-raised-button color="warn" (click)="redirectNewNote()">New Note</button>
 </div>

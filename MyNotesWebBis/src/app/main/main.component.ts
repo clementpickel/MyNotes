@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth-service.service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
   notes: any[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     const accessToken = localStorage.getItem('access_token');
@@ -32,6 +33,29 @@ export class MainComponent implements OnInit {
         if (error.status === 401) {
           this.router.navigate(['/login']);
         }
+      }
+    );
+  }
+
+  disconnect(): void {
+    this.authService.removeAccessToken();
+    this.router.navigate(['/login']);
+  }
+
+  redirectNewNote(): void {
+    this.router.navigate(['/newnote']);
+  }
+
+  deleteUser(): void {
+    // Call the deleteCurrentUser method from the AuthService
+    this.apiService.deleteCurrentUser().subscribe(
+      (response: any) => {
+        console.log('User deleted successfully', response);
+        // Handle success, e.g., navigate to the login page
+      },
+      (error: any) => {
+        console.error('Error deleting user', error);
+        // Handle the error, e.g., show an error message to the user
       }
     );
   }

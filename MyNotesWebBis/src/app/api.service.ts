@@ -57,4 +57,9 @@ export class ApiService {
 
     return this.http.post(url, note, { headers });
   }
+
+  deleteCurrentUser(): Observable<any> {
+    const url = `${this.apiUrl}/user`;
+    return this.http.delete(url);
+  }
 }
